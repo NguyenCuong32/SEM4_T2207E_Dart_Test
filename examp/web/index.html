@@ -1,19 +1,85 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk">
-    <title>examp</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="main.dart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRUD Orders</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
 </head>
-
 <body>
+<h1>CRUD Orders</h1>
 
-  <div id="output"></div>
+<form id="orderForm">
+    <label for="item">Item:</label>
+    <input type="text" id="item" name="item" required><br><br>
+    <label for="itemName">Item Name:</label>
+    <input type="text" id="itemName" name="itemName" required><br><br>
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" required><br><br>
+    <label for="currency">Currency:</label>
+    <input type="text" id="currency" name="currency" required><br><br>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" required><br><br>
+    <button type="submit">Add Order</button>
+</form>
+
+<table id="orderTable">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Item Name</th>
+            <th>Price</th>
+            <th>Currency</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="orderList">
+    </tbody>
+</table>
+
+<script>
+document.getElementById('orderForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var item = document.getElementById('item').value;
+    var itemName = document.getElementById('itemName').value;
+    var price = document.getElementById('price').value;
+    var currency = document.getElementById('currency').value;
+    var quantity = document.getElementById('quantity').value;
+    var newRow = '<tr><td>' + item + '</td><td>' + itemName + '</td><td>' + price + '</td><td>' + currency + '</td><td>' + quantity + '</td><td><button onclick="editOrder(this)">Edit</button><button onclick="deleteOrder(this)">Delete</button></td></tr>';
+    document.getElementById('orderList').insertAdjacentHTML('beforeend', newRow);
+    document.getElementById('orderForm').reset();
+});
+
+function editOrder(button) {
+    var row = button.parentNode.parentNode;
+    var cells = row.getElementsByTagName('td');
+    document.getElementById('item').value = cells[0].innerText;
+    document.getElementById('itemName').value = cells[1].innerText;
+    document.getElementById('price').value = cells[2].innerText;
+    document.getElementById('currency').value = cells[3].innerText;
+    document.getElementById('quantity').value = cells[4].innerText;
+    row.remove();
+}
+
+function deleteOrder(button) {
+    var row = button.parentNode.parentNode;
+    row.remove();
+}
+</script>
 
 </body>
 </html>
