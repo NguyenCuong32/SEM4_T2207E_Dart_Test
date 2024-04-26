@@ -7,13 +7,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk">
     <title>dart_web</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="styles.css">
     <script defer src="main.dart.js"></script>
 </head>
 
 <body>
 
-  <div id="output"></div>
+  <header class="bg-success text-white text-center py-1 mb-3">
+    <div class="container">
+      <h1 class="display-5">My Order</h5>
+      <div id="output"></div>
+    </div>
+  </header>
+
+  <div class="container" style="min-height: 70vh;"> 
+
+    <div class="d-flex justify-content-between mb-3">
+      <div class="input-group w-25">
+        <input id="search-input" type="text" class="form-control" placeholder="Search for product" aria-label="Search item or item name" aria-describedby="search-button">
+        <button id="search-btn" class="btn btn-outline-secondary" type="button" id="search-button">Search</button>
+      </div>
+      <button id="create-order-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Add Item To Cart</button>
+    </div>
+    
+    <!-- Create Modal -->
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Item</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="name" class="form-label">Item</label>
+              <input type="text" class="form-control" id="item">
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Item Name</label>
+              <input type="text" class="form-control" id="item-name">
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" class="form-control" id="price">
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Currency</label>
+              <input type="text" class="form-control" id="currency">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Quantity</label>
+              <input type="number" class="form-control" id="quantity">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="create-order-btn" data-bs-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Item</th>
+          <th scope="col">Item Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Currency</th>
+          <th scope="col">Quantity</th>
+          <th scope="col" class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="order-table">
+      </tbody>
+    </table>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Item</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="id" class="form-label">ID</label>
+              <input type="text" class="form-control" id="id-edit" disabled>
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Item</label>
+              <input type="text" class="form-control" id="item-edit">
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Item Name</label>
+              <input type="text" class="form-control" id="item-name-edit">
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" class="form-control" id="price-edit">
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Currency</label>
+              <input type="text" class="form-control" id="currency-edit">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Quantity</label>
+              <input type="number" class="form-control" id="quantity-edit">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="edit-order-btn" data-bs-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete item <span id="delete-id">#...</span></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" id="delete-order-btn" data-bs-dismiss="modal">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="bg-success text-white text-center py-1 mt-3">
+    <div class="container">
+      <div class="d-flex justify-content-between">
+        <p>So 8 Ton That Thuyet, Cau Giay, Hanoi</p>
+        <p>&copy; 2021 My Order</p>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
