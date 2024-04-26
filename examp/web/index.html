@@ -17,6 +17,7 @@
     <div class="card">
         <div class="card-body">
             <form id="orderForm">
+              <div style="display: flex;">
                 <div class="form-group">
                     <label for="item">Item:</label>
                     <input type="text" class="form-control" id="item" name="item" required>
@@ -25,6 +26,8 @@
                     <label for="itemName">Item Name:</label>
                     <input type="text" class="form-control" id="itemName" name="itemName" required>
                 </div>
+              </div>
+              <div style="display: flex;">
                 <div class="form-group">
                     <label for="price">Price:</label>
                     <input type="number" class="form-control" id="price" name="price" required>
@@ -37,6 +40,7 @@
                     <label for="quantity">Quantity:</label>
                     <input type="number" class="form-control" id="quantity" name="quantity" required>
                 </div>
+              </div>
                 <button type="submit" class="btn btn-primary">Add Order</button>
             </form>
         </div>
