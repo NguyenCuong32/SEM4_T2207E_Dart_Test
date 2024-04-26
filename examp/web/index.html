@@ -4,52 +4,63 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CRUD Orders</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
+    .card {
+        margin-top: 20px;
     }
 </style>
 </head>
 <body>
-<h1>CRUD Orders</h1>
-
-<form id="orderForm">
-    <label for="item">Item:</label>
-    <input type="text" id="item" name="item" required><br><br>
-    <label for="itemName">Item Name:</label>
-    <input type="text" id="itemName" name="itemName" required><br><br>
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" required><br><br>
-    <label for="currency">Currency:</label>
-    <input type="text" id="currency" name="currency" required><br><br>
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" required><br><br>
-    <button type="submit">Add Order</button>
-</form>
-
-<table id="orderTable">
-    <thead>
-        <tr>
-            <th>Item</th>
-            <th>Item Name</th>
-            <th>Price</th>
-            <th>Currency</th>
-            <th>Quantity</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody id="orderList">
-    </tbody>
-</table>
+<div class="container">
+    <h1 class="mt-5">CRUD Orders</h1>
+    <div class="card">
+        <div class="card-body">
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="item">Item:</label>
+                    <input type="text" class="form-control" id="item" name="item" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemName">Item Name:</label>
+                    <input type="text" class="form-control" id="itemName" name="itemName" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" class="form-control" id="price" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="currency">Currency:</label>
+                    <input type="text" class="form-control" id="currency" name="currency" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Order</button>
+            </form>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h3>Orders</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Item Name</th>
+                        <th>Price</th>
+                        <th>Currency</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="orderList">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <script>
 document.getElementById('orderForm').addEventListener('submit', function(event) {
@@ -59,7 +70,7 @@ document.getElementById('orderForm').addEventListener('submit', function(event) 
     var price = document.getElementById('price').value;
     var currency = document.getElementById('currency').value;
     var quantity = document.getElementById('quantity').value;
-    var newRow = '<tr><td>' + item + '</td><td>' + itemName + '</td><td>' + price + '</td><td>' + currency + '</td><td>' + quantity + '</td><td><button onclick="editOrder(this)">Edit</button><button onclick="deleteOrder(this)">Delete</button></td></tr>';
+    var newRow = '<tr><td>' + item + '</td><td>' + itemName + '</td><td>' + price + '</td><td>' + currency + '</td><td>' + quantity + '</td><td><button class="btn btn-info" onclick="editOrder(this)">Edit</button><button class="btn btn-danger" onclick="deleteOrder(this)">Delete</button></td></tr>';
     document.getElementById('orderList').insertAdjacentHTML('beforeend', newRow);
     document.getElementById('orderForm').reset();
 });
