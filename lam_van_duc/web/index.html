@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk" />
+    <title>lam_van_duc</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="main.dart.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      th {
+        background-color: orange !important;
+        color: white !important;
+      }
+      label {
+        color: black !important;
+        font-weight: bold !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2
+      class="text-center"
+      style="
+        margin-top: 50px;
+        margin-bottom: 50px;
+        color: orange;
+        font-weight: bold;
+      "
+    >
+      My order
+    </h2>
+    <div class="container">
+      <div class="col-md-12 row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Item</label>
+            <input
+              type="text"
+              id="item"
+              class="form-control"
+              placeholder="Item"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Item Name</label>
+            <input
+              type="text"
+              id="itemName"
+              class="form-control"
+              placeholder="Item name"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 row" style="margin-top: 10px">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="price"
+              placeholder="Price"
+            />
+          </div>
+        </div>
+        <div class="col-md-6 row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Quantity</label>
+              <input
+                type="number"
+                class="form-control"
+                id="quantity"
+                placeholder="Quantity"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Curency</label>
+              <input
+                type="text"
+                class="form-control"
+                id="curency"
+                placeholder="Curency"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-md-12 text-end"
+      style="margin-top: 10px; margin-bottom: 10px"
+    >
+      <button class="btn btn-primary" id="add">Add item to cart</button>
+    </div>
+    <div class="col-md-12" style="margin-left: 20px; margin-right: 20px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>stt</th>
+            <th>item</th>
+            <th>item name</th>
+            <th>quantity</th>
+            <th>price</th>
+            <th>curency</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>
+              <input
+                class="form-control"
+                id="search-id"
+                placeholder="tìm kiếm và nhấn enter"
+              />
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="body-data"></tbody>
+      </table>
+    </div>
+  </body>
+</html>
